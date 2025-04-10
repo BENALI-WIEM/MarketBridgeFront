@@ -1,0 +1,306 @@
+/* logo */
+.jo-header img {
+    width: 160px; /* Taille du logo */
+    height: auto; /* Maintient les proportions */
+}
+@media screen and (max-width: 768px) {
+    .jo-header img {
+        max-width: 90px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .jo-header img {
+        max-width: 70px;
+    }
+}
+
+/* logo */
+
+.jo-banner__txt p {
+    font-size: clamp(13px, 0.833vw, 16px);
+    color: white;
+    line-height: 1.6; /* Améliore la lisibilité */
+}
+
+
+
+
+
+.image-section {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .grid-item {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  .section1 {
+    color: white;
+    font-family: 'Arial', sans-serif;
+    padding: 40px 0;
+    line-height: 1.6;
+    text-align: left;
+    background-size: cover;
+    background-position: center center;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Aligne le contenu à droite */
+    padding-right: 5%; /* Ajoute un léger décalage du contenu */
+}
+
+.container1 {
+    width: 100%;
+    max-width: 1300px; /* Limite la largeur pour une meilleure lisibilité */
+    padding: 0 20px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .jo-banner-container {
+        padding: 20px;
+    }
+
+    .jo-banner__txt {
+        text-align: center;
+    }
+
+    .jo-banner__btns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image-section {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .grid-item {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .jo-banner-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .jo-banner__txt h1 {
+        font-size: clamp(20px, 4vw, 32px);
+    }
+
+    .jo-banner__txt p {
+        font-size: clamp(12px, 3vw, 16px);
+        padding: 0 10px;
+    }
+
+    .image-section {
+        justify-content: center;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .grid-item {
+        width: 180px;
+        height: 180px;
+    }
+
+    .section1 {
+        justify-content: center;
+        text-align: center;
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .jo-banner__txt h1 {
+        font-size: clamp(18px, 4vw, 28px);
+    }
+
+    .jo-banner__btns a {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .grid-item {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+
+
+
+.section-heading {
+    max-width: 1000px; /* Ajuste la largeur du texte pour une meilleure lisibilité */
+    padding: 20px;
+    margin-left: auto; /* Pousse la section vers la droite */
+    padding-right: 5%; /* Ajoute un décalage supplémentaire */
+}
+
+.section-heading h1 {
+    font-size: clamp(24px, 3vw, 42px); /* Ajuste dynamiquement la taille du titre */
+    font-weight: bold;
+    color: white;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    padding-left: 8%; /* Décalage supplémentaire vers la droite */
+}
+
+.section-heading p {
+    font-size: clamp(14px, 1vw, 18px);
+    color: white;
+    line-height: 1.6;
+    padding-left: 8%; /* Décale légèrement vers la droite */
+    max-width: 550px; /* Assure une bonne lecture */
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .section1 {
+        justify-content: flex-start; /* Ajustement pour éviter un centrage trop tôt */
+        padding-right: 3%;
+    }
+    .section-heading {
+        max-width: 85%;
+        padding-right: 3%;
+    }
+    .section-heading h1,
+    .section-heading p {
+        padding-left: 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    .section1 {
+        justify-content: center;
+        padding-right: 0;
+    }
+    .section-heading {
+        text-align: center;
+        max-width: 90%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .section-heading h1,
+    .section-heading p {
+        padding-left: 0;
+    }
+}
+
+
+.tourist-section {
+    text-align: center;
+    background-color: #000000;  /* Fond plus moderne et sombre */
+    padding: 50px 20px;
+}
+
+.tourist-section h1 {
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: bold;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: linear-gradient(145deg, #000000, #1b1a1a); /* Fond de carte plus élégant */
+    border-radius: 12px;
+    width: 300px;  /* Augmentation de la largeur des cartes */
+    padding: 25px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 6px 16px rgba(255, 153, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 153, 0, 0.4);
+}
+
+.card-content h4 {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    color: #f96e0b;
+}
+
+.card-content p {
+    font-size: 1em;
+    margin-bottom: 25px;
+    color: #d1d1d1;
+}
+
+.step-icon {
+    font-size: 48px;  /* Agrandir l'icône pour plus de visibilité */
+    margin-bottom: 20px;
+    color: #f96e0b;  /* Couleur vive pour les icônes */
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.card:hover .step-icon {
+    transform: scale(1.1); /* Animation de l'icône au survol */
+    color: #ff8000;  /* Changement de couleur au survol */
+}
+
+button {
+    background: #f96e0b;
+    border: none;
+    padding: 12px 25px;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background: #ff8000;
+    transform: scale(1.05);
+}
+.orange-line {
+    width: 100%;
+    height: 0.6px; /* Hauteur de la bande */
+    background-color: #000000; /* Couleur orange */
+}
+
+.section{
+    background-color: #f96e0b;
+}

@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+        <header class="dashboard-header">
+          <h1>Statistiques</h1>
+        </header>
+      
+        <div class="filters">
+          <div class="filter-group">
+            <label for="typeSelect">Filtrer par :</label>
+            <select id="typeSelect" [(ngModel)]="selectedType" (ngModelChange)="onFilterChange()">
+              <option value="all">Tous</option>
+              <option value="services">Services</option>
+              <option value="formations">Formations</option>
+            </select>
+          </div>
+      
+          <button class="btn-export" (click)="exportPDF()">Exporter PDF</button>
+        </div>
+      
+        <section class="charts-section">
+          <div class="chart-box" *ngIf="selectedType === 'all' || selectedType === 'services'">
+            <h3>Services commandés par Pack</h3>
+            <div class="chart-container">
+              <canvas #packChart></canvas>
+            </div>
+          </div>
+      
+          <div class="chart-box" *ngIf="selectedType === 'all' || selectedType === 'formations'">
+            <h3>Taux de Validation des Formations</h3>
+            <div class="chart-container">
+              <canvas #validationChart></canvas>
+            </div>
+          </div>
+      
+          <div class="chart-box" *ngIf="selectedType === 'all' || selectedType === 'formations'">
+            <h3>Top Formations par Taux de Réussite</h3>
+            <div class="chart-container">
+              <canvas #topFormationChart></canvas>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+    
+    
+    
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        const ctxPack = document.getElementById('packChart').getContext('2d');
+        new Chart(ctxPack, {
+          type: 'bar',
+          data: {
+            labels: ['Basique', 'Intermédiaire', 'Premium'],
+            datasets: [{
+              label: 'Services commandés',
+              data: [120, 95, 60],
+              backgroundColor: ['#f96e0b', '#ffae00', '#ffcc70']
+            }]
+          },
+          options: {
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { ticks: { color: '#fff' } },
+              y: { ticks: { color: '#fff' } }
+            }
+          }
+        });
+    
+        const ctxValidation = document.getElementById('validationChart').getContext('2d');
+        new Chart(ctxValidation, {
+          type: 'doughnut',
+          data: {
+            labels: ['Création & Production', 'Gestion & Analyse', 'Publicité & Monétisation'],
+            datasets: [{
+              label: 'Taux de validation',
+              data: [91, 88, 83],
+              backgroundColor: ['#f96e0b', '#d85a09', '#ffae00']
+            }]
+          },
+          options: {
+            plugins: { legend: { labels: { color: '#fff' } } }
+          }
+        });
+    
+        const ctxTop = document.getElementById('topFormationChart').getContext('2d');
+        new Chart(ctxTop, {
+          type: 'bar',
+          data: {
+            labels: ['Pack Basique', 'Pack Intermédiaire', 'Pack Premium'],
+            datasets: [{
+              label: 'Taux de Réussite (%)',
+              data: [89, 94, 86],
+              backgroundColor: '#f96e0b'
+            }]
+          },
+          options: {
+            plugins: { legend: { display: false } },
+            scales: {
+              x: { ticks: { color: '#fff' } },
+              y: { ticks: { color: '#fff' } }
+            }
+          }
+        });
+      </script>
+
+
+
+    <!-- libraries JS -->
+    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/splide/splide.min.js"></script>
+    <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+
+    <!-- custom js -->
+    <script src="/assets/js/main.js"></script>
+
+    
+</body>
+
+</html>

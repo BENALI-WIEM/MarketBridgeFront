@@ -1,0 +1,67 @@
+/* Logo */
+.jo-header img {
+    width: 160px; /* Taille du logo */
+    height: auto; /* Maintient les proportions */
+}
+
+@media screen and (max-width: 768px) {
+    .jo-header img {
+        max-width: 90px;
+    }
+
+    /* Cacher les éléments de la navigation sur mobile */
+    .jo-header-right {
+        display: none;
+        /* Ajouté un positionnement pour que le menu puisse s'afficher au-dessus du contenu */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white; /* Fond blanc pour le menu mobile */
+        padding: 20px;
+        z-index: 998; /* Assurez-vous qu'il reste derrière le bouton hamburger */
+    }
+
+    /* Afficher le hamburger menu sur mobile */
+    .jo-header-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 999; /* Assurez-vous que le bouton hamburger soit au-dessus du menu */
+    }
+
+    /* Design du hamburger */
+    .jo-bar {
+        height: 5px;
+        background-color: #333;
+        border-radius: 5px;
+        transition: all 0.3s ease; /* Ajouté une transition douce pour l'animation */
+    }
+
+    /* Cacher le menu sur mobile, par défaut */
+    .jo-header-right.open {
+        display: block; /* Afficher le menu quand la classe 'open' est ajoutée */
+    }
+}
+
+/* Effet du hamburger quand il est ouvert (animation) */
+.jo-header-toggle.open .jo-bar:nth-child(1) {
+    transform: rotate(45deg); /* Faire une rotation pour former une croix */
+    position: relative;
+    top: 10px;
+}
+
+.jo-header-toggle.open .jo-bar:nth-child(2) {
+    opacity: 0; /* Cacher la barre du milieu */
+}
+
+.jo-header-toggle.open .jo-bar:nth-child(3) {
+    transform: rotate(-45deg); /* Faire une rotation pour compléter la croix */
+    position: relative;
+    top: -10px;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <app-sidebar></app-sidebar>
+
+    <div class="container">
+      <a href="javascript:history.back()">
+        <i class="fa-solid fa-arrow-left return-icon"></i>
+      </a>
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          Modifier un contenu
+        </div>
+    
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+          <!-- Créateur -->
+          <div class="input-group">
+            <label for="creator">Créateur :</label>
+            <input type="text" id="creator" formControlName="creator" placeholder="Nom du créateur" />
+            <div *ngIf="editForm.controls['creator'].invalid && editForm.controls['creator'].touched" class="error-message">
+              Ce champ est obligatoire.
+            </div>
+          </div>
+    
+          <!-- Date de soumission -->
+          <div class="input-group">
+            <label for="submissionDate">Date de soumission :</label>
+            <input type="date" id="submissionDate" formControlName="submissionDate" />
+            <div *ngIf="editForm.controls['submissionDate'].invalid && editForm.controls['submissionDate'].touched" class="error-message">
+              Ce champ est requis.
+            </div>
+          </div>
+
+  
+    
+          <!-- Fichier -->
+          <div class="logo-upload-container">
+            <label class="upload-label">
+              <i class="fas fa-upload"></i>
+              <p>Modifier le fichier</p>
+              <input type="file" (change)="onFileChange($event)" hidden>
+            </label>
+            <div class="logo-preview-container" *ngIf="previewUrl">
+              <img *ngIf="isImage" [src]="previewUrl" class="logo-preview" />
+              <video *ngIf="isVideo" [src]="previewUrl" class="logo-preview" controls></video>
+              <p *ngIf="isPDF" style="color: white">PDF prêt à être enregistré.</p>
+            </div>
+          </div>
+    
+          <!-- Bouton -->
+          <button type="submit" class="btn-default" [disabled]="editForm.invalid">
+            Modifier
+          </button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- libraries JS -->
+    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/splide/splide.min.js"></script>
+    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+
+    <!-- custom JS -->
+    <script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>

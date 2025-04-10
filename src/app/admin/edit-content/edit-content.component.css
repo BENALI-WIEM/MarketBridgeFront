@@ -1,0 +1,166 @@
+body {
+    background: #000000;
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  app-sidebar {
+    width: 250px;
+    min-height: 100vh;
+  }
+  
+  /* Conteneur principal */
+  .container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 70px;
+    width: 95%;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .return-icon {
+    font-size: 24px;
+    color: #f96e0b;
+    cursor: pointer;
+    position: absolute;
+    left: 290px;
+    top: 20px;
+  }
+  
+  .card {
+    background: linear-gradient(145deg, #272727, #000000);
+    border-radius: 8px;
+    width: 95%;
+    max-width: 1200px;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .card-header {
+    background: linear-gradient(145deg, #272727, #000000);
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Upload */
+  .logo-upload-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px dashed #f96e0b;
+    padding: 15px;
+    border-radius: 6px;
+    color: #f96e0b;
+    transition: background 0.3s;
+  }
+  
+  .upload-label:hover {
+    background: rgba(255, 153, 0, 0.1);
+  }
+  
+  .upload-label i {
+    font-size: 24px;
+  }
+  
+  .upload-label p {
+    margin: 5px 0 0;
+    font-size: 14px;
+  }
+  
+  .logo-preview-container {
+    margin-top: 10px;
+  }
+  
+  .logo-preview {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 5px;
+    border: 1px solid #f96e0b;
+    margin-top: 10px;
+  }
+  
+  /* Formulaire */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: 15px;
+  }
+  
+  .input-group label {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  /* Bouton */
+  .btn-default {
+    background-color: #f96e0b;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .btn-default:disabled {
+    background-color: #f96e0b;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Message d’erreur */
+  .error-message {
+    color: #f96e0b;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container {
+      width: 90%;
+      flex-direction: column;
+    }
+  
+    .card-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+  

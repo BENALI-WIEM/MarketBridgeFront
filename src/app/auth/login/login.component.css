@@ -1,0 +1,122 @@
+/* Page Contact Us */
+.page-contact-us {
+    padding: 50px 0;
+    background-color: #000000; /* Fond noir */
+}
+
+/* Container pour centrer le contenu */
+.page-contact-us .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Centrer le formulaire */
+.contact-us-form {
+    background: linear-gradient(145deg, #1b1a1a, #000000); /* Fond de carte sombre */
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    color: white; /* Texte en blanc pour le formulaire */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 6px 16px rgba(255, 153, 0, 0.2);
+  
+}
+
+.contact-us-form:hover {
+    box-shadow: 0 8px 20px rgba(255, 153, 0, 0.4);
+  }
+  
+
+/* Titre de la section */
+.section-title h2 {
+    font-size: clamp(20px, 2vw, 40px);
+    font-weight: bold;
+    color: white;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Formulaire */
+.contact-us-form .form-label {
+    font-size: 14px;
+    color: #ffffff; /* Orange pour les labels */
+}
+
+.contact-us-form .form-control {
+    height: 45px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: 100%;
+    background-color: #333; /* Fond sombre pour les champs */
+    color: #fff; /* Texte blanc dans les champs */
+}
+
+/* Espacement pour les éléments du formulaire */
+.contact-us-form .form-group {
+    margin-bottom: 20px;
+}
+
+/* Couleur des messages d'erreur */
+.error-message {
+    color: #f96e0b; /* Orange */
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Bouton de connexion */
+.contact-us-form .btn-default {
+    background-color: #f96e0b; /* Orange */
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    
+}
+
+.contact-us-form .btn-default:disabled {
+    background-color: #f96e0b;
+}
+
+/* Liens */
+.forgot-password, .sign-up {
+    color: #f96e0b;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.forgot-password:hover, .sign-up:hover {
+    text-decoration: underline;
+}
+
+/* Texte pour "Pas encore de compte ?" */
+.no-account {
+    color: #bbb; /* Gris clair pour le texte */
+    font-size: 14px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .contact-us-form {
+        padding: 20px;
+    }
+
+    .section-title h2 {
+        font-size: 24px;
+    }
+
+    .contact-us-form .form-control {
+        font-size: 14px;
+    }
+
+    .contact-us-form .btn-default {
+        font-size: 14px;
+    }
+}

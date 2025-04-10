@@ -1,0 +1,121 @@
+body {
+    background: #000000;
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+  }
+
+  app-sidebar {
+    width: 250px;
+    min-height: 100vh;
+  }
+  
+
+.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 70px;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    background: linear-gradient(145deg, #272727, #000000);
+    border-radius: 8px;
+    width: 95%;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .card-header {
+    background: linear-gradient(145deg, #272727, #000000);
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 14px;
+    border: 1px solid #333;
+    color: white;
+  }
+  
+  th {
+    background: #1e1e1e;
+    font-weight: bold;
+    color: #f96e0b;
+  }
+  
+  .badge {
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    min-width: 80px;
+    font-size: 14px;
+  }
+  
+  .badge-attente {
+    background-color: #999900;
+    color: white;
+  }
+  .badge-valide {
+    background-color: #008000;
+    color: white;
+  }
+  .badge-refuse {
+    background-color: #8B0000;
+    color: white;
+  }
+  .badge-paye {
+    background-color: #f96e0b;
+    color: white;
+  }
+  .badge-non-paye {
+    background-color: #555;
+    color: white;
+  }
+  
+  .btn-action {
+    border: none;
+    padding: 8px;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+    color: white;
+  }
+  .btn-action:hover {
+    color: #f96e0b;
+  }
+  
+    
+  .btn-ajouter {
+    background: #f96e0b;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  
+  .btn-ajouter:hover {
+    background: #d85a09;
+  }

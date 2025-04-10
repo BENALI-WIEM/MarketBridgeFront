@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+
+<!-- Mirrored from influtics.temptics.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Feb 2025 21:14:30 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Bridge</title>
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+
+    <!-- HEADER SECTION START -->
+    <app-navbar-brands></app-navbar-brands>
+    <!-- HEADER SECTION END -->
+
+<!-- Page Contact Us Start -->
+<div class="page-contact-us">
+    <br><br><br>
+
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12">
+          <div class="contact-us-form">
+            <!-- Titre -->
+            <div class="section-title">
+              <h2 class="text-anime-style-2" data-cursor="-opaque">
+                Connectez-vous à <span>votre compte</span>
+              </h2>
+            </div>
+  
+            <!-- Formulaire -->
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <!-- Nom complet -->
+                <div class="form-group col-md-6">
+                  <label class="form-label" for="fullName">Nom complet</label>
+                  <input id="fullName" type="text" formControlName="fullName" placeholder="Nom complet" class="form-control" />
+                  <div *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched" class="error-message">
+                    <small *ngIf="registerForm.get('fullName')?.hasError('required')">Le nom complet est requis.</small>
+                  </div>
+                </div>
+  
+                <!-- Mot de passe -->
+                <div class="form-group col-md-6">
+                  <label class="form-label" for="password">Mot de passe</label>
+                  <input id="password" type="password" formControlName="password" placeholder="Mot de passe" class="form-control" />
+                  <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
+                    <small *ngIf="registerForm.get('password')?.hasError('required')">Le mot de passe est requis.</small>
+                    <small *ngIf="registerForm.get('password')?.hasError('minlength')">Au moins 8 caractères.</small>
+                    <small *ngIf="registerForm.get('password')?.hasError('passwordStrength')">Une majuscule et un chiffre requis.</small>
+                  </div>
+                </div>
+  
+                <!-- Adresse e-mail -->
+                <div class="form-group col-md-6">
+                  <label class="form-label" for="email">Adresse e-mail</label>
+                  <input id="email" type="email" formControlName="email" placeholder="Adresse e-mail" class="form-control" />
+                  <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
+                    <small *ngIf="registerForm.get('email')?.hasError('required')">L'e-mail est requis.</small>
+                    <small *ngIf="registerForm.get('email')?.hasError('email')">Format invalide.</small>
+                  </div>
+                </div>
+
+                <!-- Téléphone -->
+                <div class="form-group col-md-6">
+                  <label class="form-label" for="phone">Numéro de téléphone</label>
+                  <input id="phone" type="text" formControlName="phoneNumber" [(ngModel)]="phoneNumber" [placeholder]="phonePlaceholder" class="form-control" />
+                  <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched" class="error-message">
+                    <small *ngIf="registerForm.get('phoneNumber')?.hasError('required')">Téléphone requis.</small>
+                  </div>
+                </div>
+  
+                <!-- Date de naissance -->
+                <div class="form-group col-md-6">
+                  <label class="form-label" for="dateOfBirth">Date de naissance</label>
+                  <input id="dateOfBirth" type="date" formControlName="dateOfBirth" class="form-control" />
+                  <div *ngIf="registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched" class="error-message">
+                    <small>La date de naissance est requise.</small>
+                  </div>
+                </div>
+  
+                <!-- Genre -->
+                <div class="form-group col-md-6">
+                  <label class="form-label" for="gender">Genre</label>
+                  <select id="gender" formControlName="gender" class="form-control">
+                    <option value="" disabled [selected]="!registerForm.get('gender')?.value">Choisissez votre genre</option>
+                    <option value="male">Homme</option>
+                    <option value="female">Femme</option>
+                  </select>
+                  <div *ngIf="registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched" class="error-message">
+                    <small>Le genre est requis.</small>
+                  </div>
+                </div>
+                
+                <!-- Colonne pour l'ajout du logo -->
+                <div class="form-group col-md-12 logo-upload-container">
+                    <label class="upload-label" for="logoUpload">
+                        <i class="fas fa-upload"></i>
+                        <p>AJOUTER VOTRE AVATAR ICI</p>
+                        <input type="file" id="logoUpload" (change)="onFileChange($event)" hidden />
+                    </label>
+                    <div class="logo-preview-container">
+                        <img *ngIf="logoPreview" [src]="logoPreview" alt="Prévisualisation du logo" class="logo-preview" />
+                    </div>
+                </div>
+                <!-- Conditions -->
+                <div class="form-group col-md-12">
+                  <div class="form-check">
+                    <input type="checkbox" id="terms" formControlName="acceptTerms" />
+                    <label for="terms">J'accepte les termes et conditions</label>
+                    <div *ngIf="registerForm.get('acceptTerms')?.invalid && registerForm.get('acceptTerms')?.touched" class="error-message">
+                      <small>Obligatoire pour continuer.</small>
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- Bouton -->
+                <div class="form-group col-md-12">
+                  <button type="submit" class="btn-default" [disabled]="registerForm.invalid">S'inscrire</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+<app-footer></app-footer>
+
+
+    <!-- libraries JS -->
+    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/splide/splide.min.js"></script>
+    <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+
+    <!-- custom js -->
+    <script src="/assets/js/main.js"></script>
+</body>
+
+
+<!-- Mirrored from influtics.temptics.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Feb 2025 21:15:28 GMT -->
+</html>

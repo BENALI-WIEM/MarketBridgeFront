@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.svg">
+
+	<!-- Theme Settings Js -->
+	<script src="/assets/js/theme-script.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Feather CSS -->
+	<link rel="stylesheet" href="/assets/css/feather.css">
+
+	<!-- Boxioons CSS -->
+	<link rel="stylesheet" href="/assets/plugins/boxicons/css/boxicons.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/assets/css/styleAdmin.css">
+
+</head>
+
+
+  
+<body>
+	<app-sidebar></app-sidebar>
+
+	<div class="dashboard-container">
+		<aside class="sidebar">
+		  <h2>Market<span style="color:#f96e0b">Bridge</span></h2>
+		  <ul>
+			<li><i class="fas fa-chart-line"></i> Tableau de bord</li>
+			<li><i class="fas fa-users"></i> Utilisateurs</li>
+			<li><i class="fas fa-book"></i> Formations</li>
+			<li><i class="fas fa-cogs"></i> Services</li>
+			<li><i class="fas fa-euro-sign"></i> Transactions</li>
+			<li><i class="fas fa-comment-dots"></i> Feedbacks</li>
+			<li><i class="fas fa-chart-pie"></i> Statistiques BI</li>
+		  </ul>
+		</aside>
+	
+		<main class="main-content">
+		  <header class="dashboard-header">
+			<h1>Tableau de bord Super Admin</h1>
+		  </header>
+	
+		  <section class="stats-grid">
+			<div class="stat-card">
+			  <i class="fas fa-users fa-2x"></i>
+			  <h3>1.532</h3>
+			  <p>Utilisateurs</p>
+			</div>
+			<div class="stat-card">
+			  <i class="fas fa-book fa-2x"></i>
+			  <h3>254</h3>
+			  <p>Formations</p>
+			</div>
+			<div class="stat-card">
+			  <i class="fas fa-cogs fa-2x"></i>
+			  <h3>56</h3>
+			  <p>Services</p>
+			</div>
+			<div class="stat-card">
+			  <i class="fas fa-comment-dots fa-2x"></i>
+			  <h3>347</h3>
+			  <p>Feedbacks</p>
+			</div>
+			<div class="stat-card">
+			  <i class="fas fa-euro-sign fa-2x"></i>
+			  <h3>€3,769</h3>
+			  <p>Transactions</p>
+			</div>
+		  </section>
+	
+		  <section class="charts-section">
+			<!-- Commandes par Pack -->
+			<div class="chart-box">
+			  <h3>Services commandés par Pack</h3>
+			  <div class="chart-container">
+				<canvas #packChart></canvas>
+			  </div>
+			</div>
+		  
+			<!-- Taux de Validation des Formations -->
+			<div class="chart-box">
+			  <h3>Taux de Validation des Formations</h3>
+			  <div class="chart-container">
+				<canvas #validationChart></canvas>
+			  </div>
+			</div>
+		  
+			<!-- Top Formations -->
+			<div class="chart-box">
+			  <h3>Top Formations par Taux de Réussite</h3>
+			  <div class="chart-container">
+				<canvas #topFormationChart></canvas>
+			  </div>
+			</div>
+		  </section>
+		  
+		  
+	
+		  <section class="recent-users">
+			<h2>Derniers utilisateurs</h2>
+			<table>
+			  <thead>
+				<tr>
+				  <th>Nom</th>
+				  <th>Email</th>
+				  <th>Rôle</th>
+				  <th>Status</th>
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr>
+				  <td>wiem ben ali</td>
+				  <td>wiem@example.com</td>
+				  <td>Créateur</td>
+				  <td>Actif</td>
+				</tr>
+				<tr>
+				  <td>amir dhaouadi</td>
+				  <td>amir@example.com</td>
+				  <td>Marque</td>
+				  <td>Inactif</td>
+				</tr>
+			  </tbody>
+			</table>
+		  </section>
+		</main>
+	  </div>
+	
+	  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	  <script>
+		const ctxPack = document.getElementById('packChart').getContext('2d');
+		new Chart(ctxPack, {
+		  type: 'bar',
+		  data: {
+			labels: ['Basique', 'Intermédiaire', 'Premium'],
+			datasets: [{
+			  label: 'Services commandés',
+			  data: [120, 95, 60],
+			  backgroundColor: ['#f96e0b', '#ffae00', '#ffcc70']
+			}]
+		  },
+		  options: {
+			plugins: { legend: { display: false } },
+			scales: {
+			  x: { ticks: { color: '#fff' } },
+			  y: { ticks: { color: '#fff' } }
+			}
+		  }
+		});
+	  
+		const ctxValidation = document.getElementById('validationChart').getContext('2d');
+		new Chart(ctxValidation, {
+		  type: 'doughnut',
+		  data: {
+			labels: ['Basique', 'Intermédiaire', 'Premium'],
+			datasets: [{
+			  label: 'Taux de validation (%)',
+			  data: [88, 91, 85],
+			  backgroundColor: ['#00b894', '#00cec9', '#0984e3']
+			}]
+		  },
+		  options: {
+			plugins: { legend: { labels: { color: '#fff' } } }
+		  }
+		});
+	  
+		const ctxTopFormation = document.getElementById('topFormationChart').getContext('2d');
+		new Chart(ctxTopFormation, {
+		  type: 'bar',
+		  data: {
+			labels: ['HTML & CSS', 'Angular Avancé', 'Spring Boot'],
+			datasets: [{
+			  label: 'Taux de réussite (%)',
+			  data: [90, 94, 88],
+			  backgroundColor: '#f96e0b'
+			}]
+		  },
+		  options: {
+			plugins: { legend: { display: false } },
+			scales: {
+			  x: { ticks: { color: '#fff' } },
+			  y: { ticks: { color: '#fff' } }
+			}
+		  }
+		});
+	  </script>
+	  
+
+	<!-- jQuery -->
+	<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/assets/js/jquery-3.7.1.min.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="/assets/js/bootstrap.bundle.min.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
+
+	<!-- Sticky Sidebar JS -->
+	<script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
+	<script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
+
+	<!-- Custom JS -->
+	<script src="/assets/js/script.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
+
+<script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="b4bf18a2762ca646d3f9a13d-|49" defer></script><script defer src="../../static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"91514cd788b2e281","version":"2025.1.0","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"token":"3ca157e612a14eccbb30cf6db6691c29","b":1}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <app-sidebar></app-sidebar>
+
+    <div class="container">
+      <a href="javascript:history.back()">
+        <i class="fa-solid fa-arrow-left return-icon"></i>
+      </a>
+    
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          Ajouter un Pack Services
+        </div>
+    
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <!-- Upload de l’image -->
+          <div class="col-md-12 logo-upload-container">
+            <label class="upload-label">
+              <i class="fas fa-upload"></i>
+              <p>Image du Pack</p>
+              <input type="file" id="logoUpload" (change)="onFileChange($event)" hidden>
+            </label>
+            <div class="logo-preview-container">
+              <img *ngIf="logoPreview" [src]="logoPreview" alt="Prévisualisation" class="logo-preview">
+            </div>
+            <div *ngIf="!logoSelected && registerForm.controls['image'].touched" class="error-message">
+              L’image est obligatoire.
+            </div>
+          </div>
+    
+          <!-- Nom du Pack -->
+          <div class="input-group">
+            <label for="packName">Nom du Pack :</label>
+            <input type="text" id="packName" formControlName="name" placeholder="Ex : Pack Premium">
+            <div *ngIf="registerForm.controls['name'].invalid && registerForm.controls['name'].touched" class="error-message">
+              Ce champ est obligatoire.
+            </div>
+          </div>
+    
+          <!-- Description du Pack -->
+          <div class="input-group">
+            <label for="description">Description :</label>
+            <textarea id="description" formControlName="description" rows="4" placeholder="Décrire les services inclus..." class="form-control"></textarea>
+            <div *ngIf="registerForm.controls['description'].invalid && registerForm.controls['description'].touched" class="error-message">
+              Ce champ est obligatoire.
+            </div>
+          </div>
+    
+          <!-- Bouton -->
+          <div class="form-group">
+            <button type="submit" class="btn-default" [disabled]="registerForm.invalid || !logoSelected">
+              Enregistrer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+
+
+    <!-- libraries JS -->
+    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/splide/splide.min.js"></script>
+    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+
+    <!-- custom JS -->
+    <script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>

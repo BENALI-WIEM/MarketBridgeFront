@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+    <app-sidebar></app-sidebar>
+
+    <div class="container">
+      <a href="javascript:history.back()">
+        <i class="fa-solid fa-arrow-left return-icon"></i>
+      </a>
+    
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          Ajouter un Contenu 
+        </div>
+    
+        <form [formGroup]="contentForm" (ngSubmit)="onSubmit()">
+          <!-- Sélection du créateur -->
+          <div class="input-group">
+            <label for="creator">Créateur :</label>
+            <input id="creator" type="text" formControlName="creator" placeholder="Nom du créateur" />
+            <div *ngIf="contentForm.controls['creator'].invalid && contentForm.controls['creator'].touched" class="error-message">
+              Le nom du créateur est obligatoire.
+            </div>
+          </div>
+    
+          <!-- Date de soumission -->
+          <div class="input-group">
+            <label for="submissionDate">Date de soumission :</label>
+            <input id="submissionDate" type="date" formControlName="submissionDate" />
+            <div *ngIf="contentForm.controls['submissionDate'].invalid && contentForm.controls['submissionDate'].touched" class="error-message">
+              La date est obligatoire.
+            </div>
+          </div>
+        <!-- Sélection de la marque -->
+        <div class="input-group">
+            <label for="marque">Envoyer à la marque :</label>
+            <select id="marque" formControlName="marque" class="form-control">
+                <option value="" disabled selected>Choisir une marque</option>
+                <option *ngFor="let marque of marques" [value]="marque.id">
+                    {{ marque.nomComplet }} - {{ marque.email }} ({{ marque.pays }})
+                </option>
+            </select>
+            <div *ngIf="contentForm.controls['marque'].invalid && contentForm.controls['marque'].touched" class="error-message">
+                Sélection de la marque obligatoire.
+            </div>
+        </div>
+
+          <!-- Upload fichier -->
+          <div class="logo-upload-container">
+            <label class="upload-label" for="fileUpload">
+              <i class="fas fa-upload"></i>
+              <p>AJOUTER UN FICHIER</p>
+              <input type="file" id="fileUpload" (change)="onFileChange($event)" hidden />
+            </label>
+            <div class="logo-preview-container" *ngIf="previewUrl">
+              <img *ngIf="isImage" [src]="previewUrl" class="logo-preview" alt="Prévisualisation du contenu" />
+              <video *ngIf="isVideo" [src]="previewUrl" class="logo-preview" controls></video>
+              <p *ngIf="isPDF" style="color: white">Fichier PDF prêt à être envoyé.</p>
+            </div>
+            <div *ngIf="!fileSelected && contentForm.controls['file'].touched" class="error-message">
+              Le fichier est requis.
+            </div>
+          </div>
+    
+          <!-- Bouton soumission -->
+          <button class="btn-default" type="submit" [disabled]="contentForm.invalid || !fileSelected">
+            Enregistrer
+          </button>
+        </form>
+      </div>
+    </div>
+    
+    
+    
+
+
+
+    <!-- libraries JS -->
+    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/splide/splide.min.js"></script>
+    <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+
+    <!-- custom js -->
+    <script src="/assets/js/main.js"></script>
+
+    
+</body>
+
+</html>

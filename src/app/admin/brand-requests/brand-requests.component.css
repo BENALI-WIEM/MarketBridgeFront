@@ -1,0 +1,101 @@
+body {
+    background: #000000;
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  app-sidebar {
+    width: 250px;
+    min-height: 100vh;
+  }
+  
+  /* Conteneur centré comme services */
+  .container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 70px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Carte */
+  .card {
+    background: linear-gradient(145deg, #272727, #000000);
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* En-tête de carte */
+  .card-header {
+    background: linear-gradient(145deg, #272727, #000000);
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Tableau */
+  .table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 14px;
+    border: 1px solid #333;
+    color: white;
+  }
+  
+  th {
+    background: #1e1e1e;
+    font-weight: bold;
+    color: #f96e0b;
+  }
+  
+  /* Badges */
+  .badge {
+    display: inline-block;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .badge-en-attente {
+    background-color: #808080;
+    color: white;
+  }
+  
+  .badge-valide {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .btn-action {
+    border: none;
+    padding: 8px;
+    margin: 0 5px;
+    border-radius: 5px;
+    color: white;
+    transition: 0.3s;
+    background: transparent;
+  }
+  
+  .btn-action:hover {
+    color: #f96e0b;
+  }
+  

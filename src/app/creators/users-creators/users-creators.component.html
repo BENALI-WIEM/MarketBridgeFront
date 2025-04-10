@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+    <app-sidebar></app-sidebar>
+    <div class="container">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          Liste des utilisateurs des Créateurs
+        </div>
+    
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Avatar</th>
+              <th>Nom complet</th>
+              <th>Adresse e-mail</th>
+              <th>Téléphone</th>
+              <th>Date de naissance</th>
+              <th>Genre</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td><img [src]="user.avatar" alt="{{ user.fullName }}" class="brand-logo" /></td>
+              <td>{{ user.fullName }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phone }}</td>
+              <td>{{ user.birthDate }}</td>
+              <td>{{ user.gender }}</td>
+              <td>
+                <span class="badge" [ngClass]="user.isBlocked ? 'badge-bloque' : 'badge-actif'">
+                  {{ user.isBlocked ? 'Bloqué' : 'Actif' }}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-action btn-edit" *ngIf="!user.isBlocked" (click)="blockUser(user)">
+                  <i class="fa-solid fa-lock"></i>
+                </button>
+                <button class="btn btn-action btn-edit" *ngIf="user.isBlocked" (click)="unblockUser(user)">
+                  <i class="fa-solid fa-unlock"></i>
+                </button>
+                <button class="btn btn-action btn-delete" (click)="deleteUser(user.id)">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- libraries JS -->
+    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/splide/splide.min.js"></script>
+    <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+
+    <!-- custom js -->
+    <script src="/assets/js/main.js"></script>
+
+    
+</body>
+
+</html>

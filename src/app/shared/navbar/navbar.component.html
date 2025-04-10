@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Bridge</title>
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <!-- HEADER SECTION START -->
+    <header class="jo-header">
+        <a href="index.html"><img src="/assets/img/logoMB.png" alt="logo"></a>
+
+        <!-- Hamburger menu button for mobile -->
+        <button class="jo-header-toggle" id="hamburger-menu" aria-label="Toggle navigation">
+            <span class="jo-bar"></span>
+            <span class="jo-bar"></span>
+            <span class="jo-bar"></span>
+        </button>
+
+        <!-- Menu items that will be shown/hidden on mobile -->
+        <div class="jo-header-right">
+            <div class="jo-banner__btns">
+                <a (click)="goToCreators()" class="jo-btn-faq">CREATEUR</a>
+            </div>
+            <div class="jo-banner__btns">
+                <a (click)="goToBrands()" class="jo-btn-faq">MARQUE</a>
+            </div>
+            <div class="jo-banner__btns">
+                <a (click)="goToFaq()" class="jo-btn-faq">FAQ</a>
+            </div>
+        </div>
+    </header>
+    <!-- HEADER SECTION END -->
+
+    <!-- libraries JS -->
+    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/splide/splide.min.js"></script>
+    <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+
+    <!-- custom js -->
+    <script src="/assets/js/main.js"></script>
+
+    <!-- Hamburger menu JavaScript -->
+    <script>
+document.getElementById('hamburger-menu').addEventListener('click', function() {
+    this.classList.toggle('open'); // Ajoute ou retire la classe 'open' au bouton hamburger
+    document.querySelector('.jo-header-right').classList.toggle('open'); // Ajoute ou retire la classe 'open' au menu
+});
+
+    </script>
+</body>
+
+</html>

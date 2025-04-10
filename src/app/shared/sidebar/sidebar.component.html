@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+
+    <!-- custom CSS -->
+
+</head>
+
+<body>
+    <div class="hamburger-menu" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/assets/img/logoMB.png" alt="logo">
+        </div>
+    <br>
+        <!-- Tableau de bord section title -->
+        <h3 class="sidebar-title">Tableau de Bord</h3>
+        <a class="nav-link" [class.active]="isActive('/dashboard')" (click)="gotodashboard()">
+            <i class="fas fa-tachometer-alt"></i> Tableau de Bord
+        </a>    
+        <a class="nav-link" [class.active]="isActive('/formations-creators')" (click)="gotoformationscreators()">
+            <i class="fas fa-cogs"></i> Formations
+        </a>
+        <a class="nav-link" [class.active]="isActive('/services-brands')" (click)="gotoservicesbrands()">
+            <i class="fas fa-cogs"></i> Services
+        </a>
+
+        <a class="nav-link" [class.active]="isActive('/bi-statistics')" (click)="gotoStatistics()">
+            <i class="fas fa-chart-pie"></i> Statistiques BI
+          </a>
+          
+        <!-- Menu déroulant Utilisateurs -->
+<div class="dropdown" [class.open]="isDropdownOpen">
+    <a href="#" class="nav-link" (click)="toggleDropdown($event)">
+        <i class="fas fa-users"></i> Utilisateurs
+        <i class="fas fa-chevron-down dropdown-icon" [ngClass]="{'rotate': isDropdownOpen}"></i>
+    </a>
+
+    <div class="dropdown-content" *ngIf="isDropdownOpen">
+        <a (click)="gotousersMarques()">
+            <i class="fas fa-briefcase"></i> Marques
+        </a>
+        <a (click)="gotousersCreateurs()">
+            <i class="fas fa-user-tie"></i> Créateurs
+        </a>
+    </div>
+</div>
+
+<a class="nav-link" [class.active]="isActive('/moderation')" (click)="gotomoderation()">
+    <i class="fas fa-edit"></i> Modération
+</a>
+
+<a class="nav-link" [class.active]="isActive('/brand-requests')" (click)="gotoBrandRequests()">
+    <i class="fas fa-bell"></i> Demandes des Marques
+    <span *ngIf="pendingCount > 0" class="badge-notif">{{ pendingCount }}</span>
+  </a>
+  
+
+        <h3 class="sidebar-title">Paramètres du compte</h3>
+
+        <a class="nav-link" [class.active]="isActive('/settings-admin')" (click)="gotosetting()">
+            <i class="fas fa-cog"></i> Paramètres        
+        </a>
+
+
+        <a class="nav-link" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+        </a>
+    </div>
+    
+    <!-- libraries JS -->
+    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/splide/splide.min.js"></script>
+    <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+
+    <!-- custom js -->
+    <script src="/assets/js/main.js"></script>
+
+    <!-- Hamburger menu JavaScript -->
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        }
+
+        function toggleDropdown(event) {
+            event.preventDefault();
+            const dropdown = event.currentTarget.parentElement;
+            dropdown.classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>
