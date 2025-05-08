@@ -18,6 +18,10 @@ export class SidebarComponent {
       }
     });
   }
+  goToHome(): void {
+    this.router.navigate(['/']);  
+  }
+  
   ngOnInit(): void {
     this.pendingCount = this.getPendingRequestCount();
   }

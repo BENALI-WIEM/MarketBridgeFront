@@ -35,7 +35,6 @@
               <th>Adresse e-mail</th>
               <th>Téléphone</th>
               <th>Date de naissance</th>
-              <th>Genre</th>
               <th>Statut</th>
               <th>Actions</th>
             </tr>
@@ -47,7 +46,6 @@
               <td>{{ user.email }}</td>
               <td>{{ user.phone }}</td>
               <td>{{ user.birthDate }}</td>
-              <td>{{ user.gender }}</td>
               <td>
                 <span class="badge" [ngClass]="user.isBlocked ? 'badge-bloque' : 'badge-actif'">
                   {{ user.isBlocked ? 'Bloqué' : 'Actif' }}

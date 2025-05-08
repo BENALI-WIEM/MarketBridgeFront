@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Bridge</title>
+
+  <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+  <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+  <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+  <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+<app-navbar-creators-auth></app-navbar-creators-auth>
+
+<br><br><br>
+
+<div class="proposition-container">
+  <h2> <i class="fas fa-bell"></i> Mes Propositions</h2>
+
+  <div class="proposition-card" *ngFor="let prop of propositions">
+    <div class="proposition-header">
+      <div class="info">
+        <p><strong>Pack demandé :</strong> {{ prop.pack }}</p>
+        <p><strong>Date :</strong> {{ prop.date | date: 'dd/MM/yyyy' }}</p>
+      </div>
+
+      <div class="status">
+        <span [ngClass]="{
+          'accepted': prop.status === 'Acceptée',
+          'refused': prop.status === 'Refusée',
+          'pending': prop.status === 'En attente'
+        }">
+          {{ prop.status }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Lien de téléchargement PDF -->
+    <div class="preview-section">
+      <a [href]="prop.contentUrl" target="_blank" download class="btn-download">
+        📄 Télécharger la description du service
+      </a>
+    </div>
+
+    <!-- Actions accepter/refuser -->
+    <div class="actions">
+      <button class="btn-accept" (click)="accepter(prop)">Accepter</button>
+      <button class="btn-refuse" (click)="refuser(prop)">Refuser</button>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/vendor/splide/splide.min.js"></script>
+<script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+<script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+<script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+<script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+<script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

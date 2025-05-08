@@ -22,6 +22,34 @@
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     box-shadow: 0 6px 16px rgba(255, 153, 0, 0.2);
 }
+/* Forcer le style pour select et input date à être identique aux autres inputs */
+.contact-us-form input[type="date"],
+.contact-us-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #333 !important;
+    color: #fff !important;
+    height: 45px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Pour le texte placeholder du select */
+.contact-us-form select option[disabled][hidden] {
+    color: #999;
+}
+
+/* Pour les flèches personnalisées de <select> */
+.contact-us-form select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%23ffffff' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+}
 
 .contact-us-form:hover {
     box-shadow: 0 8px 20px rgba(255, 153, 0, 0.4);

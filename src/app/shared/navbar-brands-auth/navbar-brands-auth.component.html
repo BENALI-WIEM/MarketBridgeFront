@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+
+<!-- Mirrored from influtics.temptics.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Feb 2025 21:14:30 GMT -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Bridge</title>
+
+    <!-- libraries CSS -->
+    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <!-- sidebar -->
+    <div class="jo-sidebar">
+        <div>
+            <!-- heading -->
+            <div class="jo-sidebar__heading d-flex justify-content-between align-items-center">
+                <a (click)="goToHome()"><img src="/assets/img/logoMB.png" alt="logo" class="logo"></a>
+                <button type="button" class="jo-sidebar-close-btn"><i class="flaticon-add-plus-button"></i></button>
+            </div>
+
+            <!-- mobile menu -->
+            <div class="jo-header-nav-in-mobile"></div>
+        </div>
+
+        <div>
+            <a href="about.html" class="jo-btn"><i class="flaticon-add-plus-button"></i>Follow Me</a>
+            <!-- socials -->
+            <div
+                class="tt-footer-top__socials jo-footer-top__socials jo-sidebar-socials justify-content-start justify-content-sm-end">
+                <a href="#"><i class="flaticon-facebook-1"></i></a>
+                <a href="#"><i class="flaticon-twitter"></i></a>
+                <a href="#"><i class="flaticon-social-media"></i></a>
+                <a href="#"><i class="flaticon-youtube-1"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER SECTION START -->
+    <header class="jo-header">
+        <a (click)="goToHome()"><img src="/assets/img/logoMB.png" alt="logo"></a>
+      
+        <!-- Nouveau bloc d’icônes -->
+        <div class="jo-header-right d-flex align-items-center gap-4">
+      
+          <!-- Icône Suivi des commandes -->
+          <div class="jo-icon-btn" title="Suivi des demandes">
+            <i class="fas fa-shopping-bag" (click)="goToOrdersTracking()"></i>
+          </div>
+      
+          <!-- Icône Créateurs recommandés -->
+          <div class="jo-icon-btn" title="Créateurs recommandés">
+            <i class="fas fa-fire" (click)="goToRecommendedCreators()"></i>
+          </div>
+      
+          <!-- Icône Notifications -->
+          <div class="jo-icon-btn" title="Notifications">
+            <i class="fas fa-bell" (click)="goToNotifications()"></i>
+          </div>
+      
+          <!-- Icône Profil + menu déroulant -->
+          <div class="jo-profile-dropdown">
+            <div class="jo-icon-btn" (click)="toggleDropdown()" title="Mon profil">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="jo-dropdown-menu" *ngIf="dropdownOpen">
+              <a (click)="goToProfile()"><i class="fas fa-user-cog"></i> Gérer mon profil</a>
+              <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+
+    <!-- HEADER SECTION END -->
+
+    <!-- JavaScript -->
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("active");
+        }
+    </script>
+
+
+
+
+
+
+    <!-- libraries JS -->
+    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/splide/splide.min.js"></script>
+    <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+
+    <!-- custom js -->
+    <script src="/assets/js/main.js"></script>
+</body>
+
+
+<!-- Mirrored from influtics.temptics.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Feb 2025 21:15:28 GMT -->
+
+</html>

@@ -41,7 +41,7 @@ export class RegisterBrandComponent implements OnInit {
       fullName: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\+\d{1,3}\d{8,}$/)]],
       email: ['', [Validators.required, Validators.email]],
-      brandName: [''],
+      brandName: ['', [Validators.required]],
       logo: [null],
       password: ['', [Validators.required, Validators.minLength(8), this.passwordValidator]],
       confirmPassword: ['', [Validators.required]],

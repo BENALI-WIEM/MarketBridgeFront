@@ -3,9 +3,8 @@ import { Router } from '@angular/router';
 
 interface BrandUser {
   id: number;
-  fullName: string;
-  email: string;
   brandName: string;
+  email: string;
   country: string;
   phoneNumber: string;
   logoUrl: string;
@@ -21,7 +20,6 @@ export class BrandUsersComponent implements OnInit {
   users: BrandUser[] = [
     {
       id: 1,
-      fullName: 'John Doe',
       email: 'john.doe@example.com',
       brandName: 'Nike',
       country: 'USA',
@@ -31,7 +29,6 @@ export class BrandUsersComponent implements OnInit {
     },
     {
       id: 2,
-      fullName: 'Alice Smith',
       email: 'alice.smith@example.com',
       brandName: 'Adidas',
       country: 'Germany',

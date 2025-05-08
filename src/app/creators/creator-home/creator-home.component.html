@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Bridge</title>
+
+    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <app-navbar-creators-auth></app-navbar-creators-auth>
+
+<br><br>
+<section class="creator-hero-section">
+    <div class="creator-hero-container">
+      <div class="creator-images-left">
+        <img src="/assets/img/service-image-5.jpg" alt="Créateur 3">
+        <img src="/assets/img/service-image-2.jpg" alt="Créateur 2">
+      </div>
+
+      <div class="creator-text-center">
+        <h1>La meilleure plateforme pour <span>les créateurs de contenu</span> ou en cours de le devenir</h1>
+        <p><strong>Trouvez des emplois, étudiez avec nous pour être mieux formé</strong></p>
+        <p>Notre plateforme vous permet de sélectionner le <span class="highlight">pack</span> qui correspond le mieux à vos besoins.</p>
+        <a class="btn-orange-outline" href="#packs">Choisir un Pack</a>
+    </div>
+
+      <div class="creator-images-right">
+        <img src="/assets/img/service-image-4.jpg" alt="Créateur 3">
+        <img src="/assets/img/service-image-6.jpg" alt="Créateur 4">
+      </div>
+    </div>
+</section>
+
+<section id="packs" class="packs-section">
+  <h2>Choisissez un Pack pour commencer</h2>
+  <p class="pack-subtitle">Sélectionnez le pack qui correspond le mieux à vos objectifs et compétences.</p>
+
+  <div class="packs-wrapper">
+    <!-- Pack Basique -->
+<!-- Pack Basique -->
+<div class="pack-card">
+    <div class="pack-badge">DÉMARRER</div>
+    <div class="pack-content">
+      <h3>Pack Basique</h3>
+      <p class="description">Création & production de contenu</p>
+      <div class="price">250 TND</div>
+      <button class="btn-postuler" (click)="postuler('Pack Basique')">Postuler</button>
+    </div>
+    <div class="pack-label bottom" (click)="voirDetails(packs[0])">
+      <i class="fas fa-info-circle"></i> Détails
+    </div>
+  </div>
+  
+  <!-- Pack Intermédiaire -->
+  <div class="pack-card">
+    <div class="pack-badge">RECOMMANDÉ</div>
+    <div class="pack-content">
+      <h3>Pack Intermédiaire</h3>
+      <p class="description">Gestion & analyse des comptes</p>
+      <div class="price">400 TND</div>
+      <button class="btn-postuler" (click)="postuler('Pack Intermédiaire')">Postuler</button>
+    </div>
+    <div class="pack-label bottom" (click)="voirDetails(packs[1])">
+      <i class="fas fa-info-circle"></i> Détails
+    </div>
+  </div>
+  
+  <!-- Pack Premium -->
+  <div class="pack-card">
+    <div class="pack-badge">LE PLUS COMPLET</div>
+    <div class="pack-content">
+      <h3>Pack Premium</h3>
+      <p class="description">Publicité & Monétisation</p>
+      <div class="price">600 TND</div>
+      <button class="btn-postuler" (click)="postuler('Pack Premium')">Postuler</button>
+    </div>
+    <div class="pack-label bottom" (click)="voirDetails(packs[2])">
+      <i class="fas fa-info-circle"></i> Détails
+    </div>
+  </div>
+  
+  </div>
+</section>
+
+<!-- Modal Pack Details -->
+<div class="modal-overlay" *ngIf="selectedPack" (click)="fermerDetails()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <h3>{{ selectedPack.nom }}</h3>
+    <p><strong>Objectif :</strong> {{ selectedPack.objectif }}</p>
+    <p><strong>Services :</strong> {{ selectedPack.services }}</p>
+    <ul>
+      <li *ngFor="let comp of selectedPack.competences">✔ {{ comp }}</li>
+    </ul>
+    <button class="btn-orange-outline" (click)="fermerDetails()">Fermer</button>
+  </div>
+</div>
+
+<div class="orange-line"></div>
+
+<app-footer></app-footer>
+
+<script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/assets/vendor/splide/splide.min.js"></script>
+<script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+<script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+<script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+<script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+<script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

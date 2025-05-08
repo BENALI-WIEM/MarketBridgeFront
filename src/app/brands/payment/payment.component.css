@@ -1,0 +1,95 @@
+
+  .payment-container :hover{
+  box-shadow: 0 8px 20px rgba(255, 153, 0, 0.4);
+  }
+  .success-container {
+    text-align: center;
+    margin-top: 3rem;
+  }
+  
+  
+  .paiement-container,
+.paiement-succes,
+.paiement-erreur,
+.spinner-container {
+    background: linear-gradient(145deg, #1b1a1a, #000000); /* Fond de carte sombre */
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    color: white; /* Texte en blanc pour le formulaire */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 6px 16px rgba(255, 153, 0, 0.2);
+  
+}
+
+.paiement-container input {
+    height: 45px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: 100%;
+    background-color: #333; /* Fond sombre pour les champs */
+    color: #fff; /* Texte blanc dans les champs */
+}
+
+.paiement-container  .form-control {
+    font-size: 14px;
+    color: #ffffff;
+}
+.label {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+
+/* Page Contact Us */
+.page-contact-us {
+    padding: 50px 0;
+    background-color: #000000; /* Fond noir */
+}
+
+/* Container pour centrer le contenu */
+.page-contact-us .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-title h2 {
+    font-size: clamp(20px, 2vw, 40px);
+    font-weight: bold;
+    color: white;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+
+.btn-default {
+    background-color: #f96e0b; /* Orange */
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    
+}
+
+.btn-default:disabled {
+    background-color: #f96e0b;
+}
+
+.error-message {
+    color: #f96e0b; /* Orange */
+    font-size: 12px;
+    margin-top: 5px;
+}

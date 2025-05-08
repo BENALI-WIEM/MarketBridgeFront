@@ -1,0 +1,99 @@
+.page-contact-us {
+    background-color: #000000;
+    padding: 60px 20px;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .contact-us-form {
+    background: linear-gradient(145deg, #1a1a1a, #000000);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(255, 153, 0, 0.3);
+    color: white;
+  }
+  
+  .section-title h2 {
+    font-size: clamp(24px, 2vw, 36px);
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .section-title span {
+    color: #f96e0b;
+    text-decoration: underline;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #f1f1f1;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .form-control {
+    width: 100%;
+    background-color: #222;
+    border: 1px solid #444;
+    color: white;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    transition: border 0.3s ease;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #f96e0b;
+    box-shadow: 0 0 5px rgba(249, 110, 11, 0.5);
+  }
+  
+  .btn-default {
+    width: 100%;
+    background-color: #f96e0b;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .btn-default:hover {
+    background-color: #ff8000;
+    color: black;
+  }
+  
+  @media (max-width: 768px) {
+    .form-group.col-md-6,
+    .form-group.col-md-12 {
+      width: 100%;
+    }
+  }
+  /* Message d'erreur pour champs invalides */
+.error-message {
+    color: #f96e0b; /* Orange vif pour cohérence */
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 5px;
+    padding-left: 2px;
+  }
+  
+/* Spécifique au champ désactivé pour améliorer la visibilité */
+.form-control:disabled {
+    background-color: #1e1e1e !important;  /* fond plus sombre */
+    color: #ffffff !important;            /* texte en blanc */
+    opacity: 1;                            /* forcer l’opacité */
+  }
+  

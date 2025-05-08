@@ -1,0 +1,101 @@
+.proposition-container {
+    padding: 30px;
+    background-color: #000;
+    color: white;
+  }
+  h2 {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    line-height: 1.4;
+    border-left: 5px solid #f96e0b;
+    padding-left: 15px;
+  }
+  
+  .proposition-card {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    padding: 25px;
+    box-shadow: 0 0 12px rgba(255, 153, 0, 0.25);
+  }
+
+  .proposition-card:hover {
+    transform: scale(1.01);
+  }
+
+  .proposition-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .proposition-header .info p,
+  .proposition-header .info small {
+    margin: 0 0 6px;
+    font-size: 14px;
+  }
+  .status span {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .status .accepted {
+    background-color: #28a745;
+    color: white;
+  }
+  .status .refused {
+    background-color: #dc3545;
+    color: white;
+  }
+  .status .pending {
+    background-color: #ffc107;
+    color: #000;
+  }
+  .preview-section {
+    margin-top: 15px;
+  }
+  .preview-pdf {
+    width: 100%;
+    height: 250px;
+    border: none;
+    margin-bottom: 15px;
+  }
+  .preview-img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  .actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+  .btn-accept,
+  .btn-refuse {
+    padding: 8px 16px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  .btn-accept {
+    background-color: #28a745;
+    color: white;
+  }
+  .btn-refuse {
+    background-color: #dc3545;
+    color: white;
+  }
+
+  .btn-download {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: transparent;
+    color: #f96e0b;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }

@@ -28,34 +28,52 @@
             Demandes des Marques
           </div>
       
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Nom Complet</th>
-                <th>Email</th>
-                <th>Pays</th>
-                <th>Nom de Marque</th>
-                <th>Numéro</th>
-                <th>Pack demandé</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let demande of demandes">
-                <td>{{ demande.nomComplet }}</td>
-                <td>{{ demande.email }}</td>
-                <td>{{ demande.pays }}</td>
-                <td>{{ demande.nomMarque }}</td>
-                <td>{{ demande.telephone }}</td>
-                <td>{{ demande.pack }}</td>
-                <td>
-                  <button class="btn btn-action btn-edit" (click)="ajouterContenu(demande)" title="Ajouter un contenu">
-                    <i class="fa-solid fa-file-circle-plus"></i>
-                </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+ <!-- ... code inchangé jusqu'à ici ... -->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nom Complet</th>
+      <th>Email</th>
+      <th>Pays</th>
+      <th>Nom de Marque</th>
+      <th>Numéro</th>
+      <th>Pack demandé</th>
+      <th>Prix</th>
+      <th>Créateur associé</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let demande of demandes">
+      <td>{{ demande.nomComplet }}</td>
+      <td>{{ demande.email }}</td>
+      <td>{{ demande.pays }}</td>
+      <td>{{ demande.nomMarque }}</td>
+      <td>{{ demande.telephone }}</td>
+      <td>{{ demande.pack }}</td>
+      <td>{{ demande.prix }}</td>
+
+          <!-- ✅ Créateur associé -->
+          <td>{{ demande.createurAssocie || '-' }}</td>
+
+      <!-- ✅ icône PDF avec lien de téléchargement -->
+      <td>
+        <a *ngIf="demande.pdfUrl" [href]="demande.pdfUrl" download target="_blank" class="pdf-download" title="Télécharger la description PDF">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+      </td>
+
+      <td>
+        <button class="btn btn-action btn-edit" (click)="ajouterContenu(demande)" title="Ajouter un contenu">
+          <i class="fa-solid fa-file-circle-plus"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
         </div>
       </div>
       

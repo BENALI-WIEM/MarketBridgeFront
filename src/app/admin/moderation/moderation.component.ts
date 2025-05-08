@@ -14,6 +14,7 @@ interface Contenu {
   estTelecharge: boolean;
   feedback?: Feedback;
   fichier?: string;
+  marque?: string;
 }
 
 @Component({
@@ -25,30 +26,33 @@ export class ModerationComponent {
   contenus: Contenu[] = [
     {
       id: '1',
-      createur: 'Sarah Dupont',
+      createur: 'Sarah ',
       dateSoumission: '2025-04-10',
       statut: 'VALIDE',
       estTelecharge: true,
       feedback: { commentaire: 'Bon travail', note: 4 },
-      fichier: '/assets/files/contenu1.pdf'
-    },
+      fichier: '/assets/files/contenu1.pdf',
+      marque: 'Marque A'
+        },
     {
       id: '2',
-      createur: 'Marc Ben Ayed',
+      createur: 'Marc',
       dateSoumission: '2025-04-07',
       statut: 'EN_ATTENTE',
       estTelecharge: false,
       feedback: undefined,
-      fichier: '/assets/files/contenu2.pdf'
+      fichier: '/assets/files/contenu2.pdf',
+      marque: 'Marque B'
     },
     {
       id: '3',
-      createur: 'Emma Leroy',
+      createur: 'Emma',
       dateSoumission: '2025-04-08',
       statut: 'REFUSE',
       estTelecharge: false,
       feedback: { commentaire: 'Non conforme', note: 2 },
-      fichier: '/assets/files/contenu3.pdf'
+      fichier: '/assets/files/contenu3.pdf',
+      marque: 'Marque C'
     }
   ];
 

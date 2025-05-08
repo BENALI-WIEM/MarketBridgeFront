@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Bridge</title>
+
+  <!-- Ajoute les liens CSS nécessaires -->
+  <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+  <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+  <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+  <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+  <app-navbar-brands-auth></app-navbar-brands-auth>
+
+  <br><br>
+  <!-- Bandeau IA -->
+  <div class="bandeau-ia">
+
+    <span>Les créateurs sont recommandés par notre IA.</span>
+    <button class="btn-logic" (click)="ouvrirLogique()">Voir les Détails IA</button>
+  </div>
+<!-- Section Filtres -->
+<div class="filtre-container">
+    
+    <select class="filtre-select" [(ngModel)]="filtreSpecialite">
+      <option value="">Toutes les spécialités</option>
+      <option value="fashion">Fashion</option>
+      <option value="lifestyle">Lifestyle</option>
+      <option value="beauty">Beauté</option>
+    </select>
+  
+    <button class="btn-filtrer" (click)="appliquerFiltre()">Filtrer</button>
+  </div>
+
+  <section class="createurs-section">
+    <h2>Créateurs recommandés</h2>
+    <p class="createurs-subtitle">Découvrez les meilleurs profils pour vos campagnes</p>
+  
+    <div class="createurs-wrapper">
+      <div class="createur-card" *ngFor="let c of createurs">
+        <br>
+
+        <div class="match-badge">{{ c.match }}</div>
+        <h3>{{ c.nom }}</h3>
+        <p><strong>Spécialité :</strong> {{ c.specialite }}</p>
+        <p><strong>Plateformes :</strong> {{ c.plateformes.join(', ') }}</p>
+        <p><strong>Followers :</strong> {{ c.followers }}</p>
+        <p><strong>Note :</strong> {{ c.note }}</p>
+        <div class="createur-score">Score IA : {{ c.score }}%</div>
+        <button class="btn-détails" (click)="ouvrirLogique()">Détails IA</button>
+      </div>
+    </div>
+
+    <!-- Modale IA (apparaît lorsque modalOuverte est true) -->
+    <div class="modal-ia" *ngIf="modalOuverte">
+      <div class="modal-contenu">
+        <h3>Analyse par IA</h3>
+        <p>Ici s'afficheront les recommandations générées par l'intelligence artificielle. Vous pouvez ici trouver des informations détaillées sur les créateurs recommandés.</p>
+        <button class="btn-fermer" (click)="fermerLogique()">Fermer</button>
+      </div>
+    </div>
+
+  </section>
+
+  <app-footer></app-footer>
+
+  <!-- Ajoute les scripts nécessaires -->
+  <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/splide/splide.min.js"></script>
+  <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+  <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+  <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+  <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+  <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

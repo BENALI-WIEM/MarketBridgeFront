@@ -119,3 +119,17 @@ body {
   .btn-ajouter:hover {
     background: #d85a09;
   }
+
+  /* Icône PDF */
+.pdf-download {
+  color: #ffffff;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.pdf-download:hover {
+  color: #f96e0b;
+}
+td:nth-child(8) {
+  color: #ffffff;
+}

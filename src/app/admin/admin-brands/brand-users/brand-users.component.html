@@ -31,9 +31,8 @@
         <thead>
           <tr>
             <th>Logo</th>
-            <th>Nom Complet</th>
-            <th>Email</th>
             <th>Marque</th>
+            <th>Email</th>
             <th>Pays</th>
             <th>Téléphone</th>
             <th>Statut</th>
@@ -43,7 +42,6 @@
         <tbody>
           <tr *ngFor="let user of users">
             <td><img [src]="user.logoUrl" alt="Logo" class="brand-logo" /></td>
-            <td>{{ user.fullName }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.brandName }}</td>
             <td>{{ user.country }}</td>

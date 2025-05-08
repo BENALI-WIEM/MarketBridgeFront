@@ -6,7 +6,6 @@ interface User {
   email: string;
   phone: string;
   birthDate: string;
-  gender: string;
   avatar: string;
   isBlocked: boolean;
 }
@@ -24,7 +23,6 @@ export class UsersCreatorsComponent {
       email: 'sarah@example.com',
       phone: '0601234567',
       birthDate: '1995-05-10',
-      gender: 'Femme',
       avatar: '/assets/img/avatars/sarah.png',
       isBlocked: false
     },
@@ -34,7 +32,6 @@ export class UsersCreatorsComponent {
       email: 'marc@example.com',
       phone: '0612345678',
       birthDate: '1992-08-22',
-      gender: 'Homme',
       avatar: '/assets/img/avatars/marc.png',
       isBlocked: true
     }

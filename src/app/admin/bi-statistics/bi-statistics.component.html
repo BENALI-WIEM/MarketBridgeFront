@@ -1,146 +1,172 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- libraries CSS -->
-    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
-    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
-    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
-    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
-    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
-    <!-- custom CSS -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.svg">
+
+	<!-- Theme Settings Js -->
+	<script src="/assets/js/theme-script.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Feather CSS -->
+	<link rel="stylesheet" href="/assets/css/feather.css">
+
+	<!-- Boxioons CSS -->
+	<link rel="stylesheet" href="/assets/plugins/boxicons/css/boxicons.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/assets/css/styleAdmin.css">
+
 </head>
+
+
+  
 <body>
+	<app-sidebar></app-sidebar>
 
-    <app-sidebar></app-sidebar>
-    <main class="main-content">
-        <header class="dashboard-header">
-          <h1>Statistiques</h1>
-        </header>
-      
-        <div class="filters">
-          <div class="filter-group">
-            <label for="typeSelect">Filtrer par :</label>
-            <select id="typeSelect" [(ngModel)]="selectedType" (ngModelChange)="onFilterChange()">
-              <option value="all">Tous</option>
-              <option value="services">Services</option>
-              <option value="formations">Formations</option>
-            </select>
-          </div>
-      
-          <button class="btn-export" (click)="exportPDF()">Exporter PDF</button>
+	<div class="dashboard-container">
+		<aside class="sidebar">
+		  <h2>Market<span style="color:#f96e0b">Bridge</span></h2>
+		  <ul>
+			<li><i class="fas fa-chart-line"></i> Tableau de bord</li>
+			<li><i class="fas fa-users"></i> Utilisateurs</li>
+			<li><i class="fas fa-book"></i> Formations</li>
+			<li><i class="fas fa-cogs"></i> Services</li>
+			<li><i class="fas fa-euro-sign"></i> Transactions</li>
+			<li><i class="fas fa-comment-dots"></i> Feedbacks</li>
+			<li><i class="fas fa-chart-pie"></i> Statistiques BI</li>
+		  </ul>
+		</aside>
+    <main class="main-content bi-statistics-container">
+
+      <div class="dashboard-header">
+        <h1>Statistiques BI</h1>
+      </div>
+    
+      <div class="filters">
+        <div class="filter-group">
+          <label for="typeSelect">Filtrer par :</label>
+          <select [(ngModel)]="selectedType" (ngModelChange)="onFilterChange()">
+            <option value="all">Tous</option>
+            <option value="services">Services</option>
+            <option value="formations">Formations</option>
+          </select>
         </div>
-      
-        <section class="charts-section">
-          <div class="chart-box" *ngIf="selectedType === 'all' || selectedType === 'services'">
-            <h3>Services commandés par Pack</h3>
-            <div class="chart-container">
-              <canvas #packChart></canvas>
-            </div>
+        <button class="btn-export" (click)="exportPDF()">Exporter PDF</button>
+      </div>
+    
+      <section class="charts-section">
+        <!-- Commandes par Pack -->
+        <div class="chart-box" *ngIf="selectedType === 'all' || selectedType === 'services'">
+          <h3>Services commandés par Pack</h3>
+          <div class="chart-container">
+            <canvas #packChart></canvas>
           </div>
-      
-          <div class="chart-box" *ngIf="selectedType === 'all' || selectedType === 'formations'">
-            <h3>Taux de Validation des Formations</h3>
-            <div class="chart-container">
-              <canvas #validationChart></canvas>
-            </div>
+        </div>
+    
+        <!-- Taux de Validation des Formations -->
+        <div class="chart-box" *ngIf="selectedType === 'all' || selectedType === 'formations'">
+          <h3>Taux de Validation des Formations</h3>
+          <div class="chart-container">
+            <canvas #validationChart></canvas>
           </div>
-      
-          <div class="chart-box" *ngIf="selectedType === 'all' || selectedType === 'formations'">
-            <h3>Top Formations par Taux de Réussite</h3>
-            <div class="chart-container">
-              <canvas #topFormationChart></canvas>
-            </div>
+        </div>
+    
+        <!-- Top Formations -->
+        <div class="chart-box" *ngIf="selectedType === 'all' || selectedType === 'formations'">
+          <h3>Top Formations par Taux de Réussite</h3>
+          <div class="chart-container">
+            <canvas #topFormationChart></canvas>
           </div>
-        </section>
-      </main>
-      
-    
-    
-    
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script>
-        const ctxPack = document.getElementById('packChart').getContext('2d');
-        new Chart(ctxPack, {
-          type: 'bar',
-          data: {
-            labels: ['Basique', 'Intermédiaire', 'Premium'],
-            datasets: [{
-              label: 'Services commandés',
-              data: [120, 95, 60],
-              backgroundColor: ['#f96e0b', '#ffae00', '#ffcc70']
-            }]
-          },
-          options: {
-            plugins: { legend: { display: false } },
-            scales: {
-              x: { ticks: { color: '#fff' } },
-              y: { ticks: { color: '#fff' } }
-            }
-          }
-        });
-    
-        const ctxValidation = document.getElementById('validationChart').getContext('2d');
-        new Chart(ctxValidation, {
-          type: 'doughnut',
-          data: {
-            labels: ['Création & Production', 'Gestion & Analyse', 'Publicité & Monétisation'],
-            datasets: [{
-              label: 'Taux de validation',
-              data: [91, 88, 83],
-              backgroundColor: ['#f96e0b', '#d85a09', '#ffae00']
-            }]
-          },
-          options: {
-            plugins: { legend: { labels: { color: '#fff' } } }
-          }
-        });
-    
-        const ctxTop = document.getElementById('topFormationChart').getContext('2d');
-        new Chart(ctxTop, {
-          type: 'bar',
-          data: {
-            labels: ['Pack Basique', 'Pack Intermédiaire', 'Pack Premium'],
-            datasets: [{
-              label: 'Taux de Réussite (%)',
-              data: [89, 94, 86],
-              backgroundColor: '#f96e0b'
-            }]
-          },
-          options: {
-            plugins: { legend: { display: false } },
-            scales: {
-              x: { ticks: { color: '#fff' } },
-              y: { ticks: { color: '#fff' } }
-            }
-          }
-        });
-      </script>
+        </div>
+      </section>
+    </main>
+</div>    
+	
+	  <script>
+		const ctxPack = document.getElementById('packChart').getContext('2d');
+		new Chart(ctxPack, {
+		  type: 'bar',
+		  data: {
+			labels: ['Basique', 'Intermédiaire', 'Premium'],
+			datasets: [{
+			  label: 'Services commandés',
+			  data: [120, 95, 60],
+			  backgroundColor: ['#f96e0b', '#ffae00', '#ffcc70']
+			}]
+		  },
+		  options: {
+			plugins: { legend: { display: false } },
+			scales: {
+			  x: { ticks: { color: '#fff' } },
+			  y: { ticks: { color: '#fff' } }
+			}
+		  }
+		});
+	  
+		const ctxValidation = document.getElementById('validationChart').getContext('2d');
+		new Chart(ctxValidation, {
+		  type: 'doughnut',
+		  data: {
+			labels: ['Basique', 'Intermédiaire', 'Premium'],
+			datasets: [{
+			  label: 'Taux de validation (%)',
+			  data: [88, 91, 85],
+			  backgroundColor: ['#00b894', '#00cec9', '#0984e3']
+			}]
+		  },
+		  options: {
+			plugins: { legend: { labels: { color: '#fff' } } }
+		  }
+		});
+	  
+		const ctxTopFormation = document.getElementById('topFormationChart').getContext('2d');
+		new Chart(ctxTopFormation, {
+		  type: 'bar',
+		  data: {
+			labels: ['HTML & CSS', 'Angular Avancé', 'Spring Boot'],
+			datasets: [{
+			  label: 'Taux de réussite (%)',
+			  data: [90, 94, 88],
+			  backgroundColor: '#f96e0b'
+			}]
+		  },
+		  options: {
+			plugins: { legend: { display: false } },
+			scales: {
+			  x: { ticks: { color: '#fff' } },
+			  y: { ticks: { color: '#fff' } }
+			}
+		  }
+		});
+	  </script>
+	  
 
+	<!-- jQuery -->
+	<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/assets/js/jquery-3.7.1.min.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
 
+	<!-- Bootstrap Core JS -->
+	<script src="/assets/js/bootstrap.bundle.min.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
 
-    <!-- libraries JS -->
-    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="/assets/vendor/splide/splide.min.js"></script>
-    <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
-    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
-    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
-    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
-    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+	<!-- Sticky Sidebar JS -->
+	<script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
+	<script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
 
-    <!-- custom js -->
-    <script src="/assets/js/main.js"></script>
+	<!-- Custom JS -->
+	<script src="/assets/js/script.js" type="b4bf18a2762ca646d3f9a13d-text/javascript"></script>
 
-    
+<script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="b4bf18a2762ca646d3f9a13d-|49" defer></script><script defer src="../../static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"91514cd788b2e281","version":"2025.1.0","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"token":"3ca157e612a14eccbb30cf6db6691c29","b":1}' crossorigin="anonymous"></script>
 </body>
-
 </html>

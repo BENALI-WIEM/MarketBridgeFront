@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-bi-statistics',
@@ -8,30 +9,29 @@ import jsPDF from 'jspdf';
   styleUrls: ['./bi-statistics.component.css']
 })
 export class BiStatisticsComponent implements AfterViewInit {
-  selectedType: string = 'all';
-
   @ViewChild('packChart') packChartRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('validationChart') validationChartRef!: ElementRef<HTMLCanvasElement>;
   @ViewChild('topFormationChart') topFormationChartRef!: ElementRef<HTMLCanvasElement>;
 
-  packChart!: Chart;
-  validationChart!: Chart;
-  topFormationChart!: Chart;
+  selectedType: string = 'all';
 
   ngAfterViewInit(): void {
     Chart.register(...registerables);
     this.renderCharts();
   }
 
+  onFilterChange(): void {
+    // Optionnel : tu peux rerender les graphiques ici si nécessaire
+  }
+
   renderCharts(): void {
-    if (this.selectedType === 'all' || this.selectedType === 'services') {
-      if (this.packChart) this.packChart.destroy();
-      this.packChart = new Chart(this.packChartRef.nativeElement, {
+    if (this.packChartRef) {
+      new Chart(this.packChartRef.nativeElement, {
         type: 'bar',
         data: {
           labels: ['Basique', 'Intermédiaire', 'Premium'],
           datasets: [{
-            label: 'Services commandés',
+            label: 'Nombre de services commandés',
             data: [120, 95, 60],
             backgroundColor: ['#f96e0b', '#ffae00', '#ffcc70']
           }]
@@ -40,16 +40,15 @@ export class BiStatisticsComponent implements AfterViewInit {
       });
     }
 
-    if (this.selectedType === 'all' || this.selectedType === 'formations') {
-      if (this.validationChart) this.validationChart.destroy();
-      this.validationChart = new Chart(this.validationChartRef.nativeElement, {
+    if (this.validationChartRef) {
+      new Chart(this.validationChartRef.nativeElement, {
         type: 'doughnut',
         data: {
           labels: ['Création & Production', 'Gestion & Analyse', 'Publicité & Monétisation'],
           datasets: [{
-            label: 'Validation (%)',
+            label: 'Taux de validation',
             data: [91, 88, 83],
-            backgroundColor: ['#ff5722', '#ff8f00', '#ffa726']
+            backgroundColor: ['#f96e0b', '#d85a09', '#ffae00']
           }]
         },
         options: {
@@ -61,9 +60,10 @@ export class BiStatisticsComponent implements AfterViewInit {
           }
         }
       });
+    }
 
-      if (this.topFormationChart) this.topFormationChart.destroy();
-      this.topFormationChart = new Chart(this.topFormationChartRef.nativeElement, {
+    if (this.topFormationChartRef) {
+      new Chart(this.topFormationChartRef.nativeElement, {
         type: 'bar',
         data: {
           labels: ['Pack Basique', 'Pack Intermédiaire', 'Pack Premium'],
@@ -78,17 +78,6 @@ export class BiStatisticsComponent implements AfterViewInit {
     }
   }
 
-  onFilterChange(): void {
-    this.renderCharts();
-  }
-
-  exportPDF(): void {
-    const doc = new jsPDF();
-    doc.text("Rapport Statistique BI", 10, 10);
-    doc.text(`Filtre appliqué : ${this.selectedType}`, 10, 20);
-    doc.save("statistiques-bi.pdf");
-  }
-
   getChartOptions() {
     return {
       responsive: true,
@@ -98,9 +87,27 @@ export class BiStatisticsComponent implements AfterViewInit {
         }
       },
       scales: {
-        x: { ticks: { color: '#fff' } },
-        y: { ticks: { color: '#fff' } }
+        x: {
+          ticks: { color: '#fff' }
+        },
+        y: {
+          ticks: { color: '#fff' }
+        }
       }
     };
+  }
+
+  exportPDF(): void {
+    const element = document.querySelector('.charts-section') as HTMLElement;
+    html2canvas(element).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('landscape');
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      pdf.addImage(imgData, 'PNG', 0, 10, pdfWidth, pdfHeight);
+      pdf.save('statistiques.pdf');
+    });
   }
 }

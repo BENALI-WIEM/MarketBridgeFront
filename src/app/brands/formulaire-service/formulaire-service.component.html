@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Bridge</title>
+
+  <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+  <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+  <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+  <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <app-navbar-brands-auth></app-navbar-brands-auth>
+
+  <br><br>
+
+  <section class="page-contact-us">
+    <div class="container">
+      <div class="contact-us-form">
+        <div class="section-title">
+          <h2 class="text-anime-style-2">Postuler à un <span>Pack Créateur</span></h2>
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Nom complet</label>
+              <input type="text" class="form-control" formControlName="fullName" placeholder="Nom complet">
+              <div *ngIf="registerForm.get('fullName')?.touched && registerForm.get('fullName')?.invalid"
+                class="error-message">
+                Le nom complet est requis.
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Adresse e-mail</label>
+              <input type="email" class="form-control" formControlName="email" placeholder="Adresse e-mail">
+              <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid"
+                class="error-message">
+                <span *ngIf="registerForm.get('email')?.hasError('required')">L’adresse e-mail est requise.</span>
+                <span *ngIf="registerForm.get('email')?.hasError('email')">Le format de l’e-mail est invalide.</span>
+              </div>
+            </div>
+            <!-- Sélection du pays -->
+            <div class="form-group col-md-6">
+              <label class="form-label" for="country">Sélectionner le pays</label>
+              <select id="country" formControlName="country" class="form-control" (change)="onCountryChange($event)">
+                <!-- Affichage des pays sans code dans la liste -->
+                <option value="TN" selected>Tunisie</option>
+                <option value="US">États-Unis</option>
+                <option value="FR">France</option>
+                <option value="DE">Allemagne</option>
+                <option value="GB">Royaume-Uni</option>
+                <option value="IT">Italie</option>
+                <option value="ES">Espagne</option>
+                <option value="CA">Canada</option>
+                <!-- Ajoutez d'autres pays ici -->
+              </select>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>Nom du la marque</label>
+                <input type="text" class="form-control" formControlName="brandName"
+                    placeholder="Nom du la marque" />
+                <div *ngIf="registerForm.get('brandName')?.touched && registerForm.get('brandName')?.invalid"
+                    class="error-message">
+                    Le nom du la marque est requis.
+                </div>
+            </div>
+
+            <!-- Numéro de téléphone -->
+            <div class="form-group col-md-6">
+              <label class="form-label" for="phone">Numéro de téléphone</label>
+              <input id="phone" type="text" formControlName="phoneNumber" class="form-control" [(ngModel)]="phoneNumber"
+                [placeholder]="phonePlaceholder" />
+              <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched"
+                class="error-message">
+                <small *ngIf="registerForm.get('phoneNumber')?.hasError('required')">Le numéro de téléphone est
+                  requis.</small>
+              </div>
+            </div>
+
+
+            <div class="form-group col-md-6">
+              <label>Pack demandé</label>
+              <input type="text" class="form-control" [value]="packChoisi" disabled>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label>Prix</label>
+              <input type="text" class="form-control" [value]="prixPack + ' TND'" disabled>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="associatedCreator">Créateur associé</label>
+                <select class="form-control" formControlName="associatedCreator" id="associatedCreator">
+                  <optgroup label="Créateur formé">
+                    <option value="Créateur formé">Créateur formé</option>
+                  </optgroup>
+                  <optgroup label="Créateur professionnel">
+                    <option value="SARA GHRAM">SARA GHRAM</option>
+                    <option value="MARAM LAHBIB">MARAM LAHBIB</option>
+                    <option value="ROUA WALGA">ROUA WALGA</option>
+                  </optgroup>
+                </select>
+                <div *ngIf="registerForm.get('associatedCreator')?.touched && registerForm.get('associatedCreator')?.invalid"
+                  class="error-message">
+                  Le créateur associé est requis.
+                </div>
+              </div>
+
+<!-- Upload du Document PDF -->
+<div class="col-md-12 logo-upload-container">
+    <label class="upload-label">
+      <i class="fas fa-file-upload"></i>
+      <p>Document PDF</p>
+      <input type="file" id="pdfUpload" (change)="onPdfChange($event)" accept="application/pdf" hidden>
+    </label>
+  
+    <div *ngIf="pdfFileName" class="text-white mt-2">
+      📄 {{ pdfFileName }}
+    </div>
+  
+    <div *ngIf="!pdfSelected && registerForm.controls['documentPdf'].touched" class="error-message">
+      Le document PDF est requis.
+    </div>
+  </div>
+  
+              
+            <div class="form-group col-md-12">
+              <button type="submit" class="btn-default" [disabled]="registerForm.invalid">Envoyer</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+
+  <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/splide/splide.min.js"></script>
+  <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+  <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+  <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+  <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+  <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>
