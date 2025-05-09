@@ -16,11 +16,10 @@ interface Createur {
   styleUrls: ['./createurs-recommandes.component.css']
 })
 export class CreateursRecommandesComponent {
-  modalOuverte: boolean = false;
-  filtreNom: string = '';
-  filtreSpecialite: string = '';
+  filtreSpecialite = '';
+  modalOuverte = false;
 
-  createurs: Createur[] = [
+  tousLesCreateurs = [
     {
       nom: 'SARAGHRAM',
       specialite: 'Fashion',
@@ -50,19 +49,15 @@ export class CreateursRecommandesComponent {
     }
   ];
 
-  createursFiltres = [...this.createurs];
+  createurs = [...this.tousLesCreateurs];
 
   appliquerFiltre() {
-    const nom = this.filtreNom.trim().toLowerCase();
-    const specialite = this.filtreSpecialite;
-
-    this.createursFiltres = this.createurs.filter(c => {
-      const correspondNom = c.nom.toLowerCase().includes(nom);
-      const correspondSpec = specialite ? c.specialite === specialite : true;
-      return correspondNom && correspondSpec;
-    });
+    if (this.filtreSpecialite) {
+      this.createurs = this.tousLesCreateurs.filter(c => c.specialite === this.filtreSpecialite);
+    } else {
+      this.createurs = [...this.tousLesCreateurs];
+    }
   }
-
   ouvrirLogique() {
     this.modalOuverte = true;
   }

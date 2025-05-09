@@ -37,7 +37,7 @@ body {
     color: #ffffff;
     padding: 15px;
     border-radius: 5px;
-    font-size: 22px;
+    font-size: 12px;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
@@ -69,7 +69,7 @@ body {
     border-radius: 20px;
     font-weight: bold;
     min-width: 80px;
-    font-size: 14px;
+    font-size: 11px;
   }
   
   .badge-attente {
@@ -123,7 +123,7 @@ body {
   /* Icône PDF */
 .pdf-download {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 15px;
   transition: color 0.3s ease;
 }
 
@@ -133,3 +133,11 @@ body {
 td:nth-child(8) {
   color: #ffffff;
 }
+
+
+.contenu-valeur {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: bold;
+}
+

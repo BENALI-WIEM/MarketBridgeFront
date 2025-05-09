@@ -37,11 +37,11 @@
     <div class="proposition-card" *ngFor="let prop of propositions">
 
       <!-- Bouton de paiement en haut de la carte si accepté -->
-      <div *ngIf="prop.status === 'Acceptée'" class="text-end mb-2">
-        <button class="btn btn-warning" (click)="redirectToPayment(prop)">
-          <i class="fas fa-credit-card"></i> Payer ce pack
-        </button>
-      </div>
+    <div *ngIf="prop.status === 'Acceptée' && prop.creatorRating" class="text-end mb-2">
+      <button class="btn btn-warning" (click)="confirmerPaiement(prop)">
+        <i class="fas fa-credit-card"></i> Payer ce pack
+      </button>
+    </div>
 
       <div class="proposition-header">
         <div class="info">
@@ -62,28 +62,89 @@
         </div>
       </div>
 
-      <div class="actions">
+    <div class="actions" *ngIf="prop.status === 'En attente'">
         <button class="btn-accept" (click)="accepter(prop)">Accepter</button>
         <button class="btn-refuse" (click)="prop.showFeedback = !prop.showFeedback">Refuser</button>
       </div>
 
-      <!-- Zone de feedback affichée uniquement si showFeedback est true -->
-      <div *ngIf="prop.showFeedback" class="feedback-form mt-3">
-        <label for="rating">Note (1 à 5) :</label>
-        <select [(ngModel)]="prop.rating" class="form-control" id="rating">
-          <option value="">Sélectionner</option>
-          <option *ngFor="let r of [1,2,3,4,5]" [value]="r">{{ r }}</option>
-        </select>
+<!-- Zone de feedback affichée uniquement si showFeedback est true -->
+<div *ngIf="prop.showFeedback" class="feedback-form mt-4 p-3">
+<div class="form-group mb-3">
+  <label for="rating" class="form-label">⭐ Note (1 à 5)</label>
+  <select
+    [(ngModel)]="prop.rating"
+    name="rating"
+    required
+    class="form-select feedback-select"
+    id="rating"
+    #ratingRef="ngModel">
+    <option value="">Sélectionner</option>
+    <option *ngFor="let r of [1,2,3,4,5]" [value]="r">{{ r }}</option>
+  </select>
 
-        <label for="desc">Motif du refus :</label>
-        <textarea [(ngModel)]="prop.feedback" class="form-control" rows="3" placeholder="Expliquez le motif..."></textarea>
-        <br>
-        <button class="btn-add" (click)="envoyerRefus(prop)">Envoyer</button>
-      </div>
+  <div *ngIf="ratingRef.invalid && ratingRef.touched" class="error-message">
+    La note est requise.
+  </div>
+</div>
 
+<div class="form-group mb-3">
+  <label for="desc" class="form-label">✏️ Motif du refus</label>
+  <textarea
+    [(ngModel)]="prop.feedback"
+    name="feedback"
+    required
+    class="form-control feedback-textarea"
+    id="desc"
+    rows="3"
+    placeholder="Expliquez clairement la raison du refus..."
+    #feedbackRef="ngModel">
+  </textarea>
+
+  <div *ngIf="feedbackRef.invalid && feedbackRef.touched" class="error-message">
+    Le motif est requis.
+  </div>
+</div>
+
+  <div class="text-end">
+<button class="btn btn-warning feedback-btn"
+        [disabled]="feedbackRef.invalid || ratingRef.invalid"
+        (click)="envoyerRefus(prop)">
+  <i class="fas fa-paper-plane"></i> Envoyer
+</button>
+
+  </div>
+</div>
+
+<!-- Flèche retour affichée uniquement après acceptation -->
+<div *ngIf="prop.showCreatorFeedback && prop.status === 'Acceptée'" class="back-button-custom" (click)="annulerAcceptation(prop)">
+  <i class="fas fa-arrow-left"></i> Annuler l'acceptation
+</div>
+
+<!-- Zone d’évaluation créateur après acceptation -->
+<div *ngIf="prop.showCreatorFeedback && prop.status === 'Acceptée'" class="feedback-form mt-4 p-3">
+  <div class="form-group mb-3">
+    <label for="creatorRating">⭐ Notez le créateur</label>
+    <select
+      [(ngModel)]="prop.creatorRating"
+      name="creatorRating"
+      class="form-select feedback-select"
+      id="creatorRating"
+      required
+      #creatorRatingRef="ngModel">
+      <option value="">Sélectionner</option>
+      <option *ngFor="let r of [1,2,3,4,5]" [value]="r">{{ r }}</option>
+    </select>
+
+    <div *ngIf="creatorRatingRef.invalid && creatorRatingRef.touched" class="error-message">
+      La note du créateur est requise.
     </div>
   </div>
-  
+</div>
+
+
+    
+  </div>
+  </div>
   <app-footer></app-footer>
 
 

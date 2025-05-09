@@ -1,111 +1,119 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- libraries CSS -->
-    <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
-    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
-    <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
-    <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
-    <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
-    <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
+  <!-- libraries CSS -->
+  <link rel="stylesheet" href="/assets/font/flaticon_jio_-_influencer.css">
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/vendor/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/assets/vendor/splide/splide.min.css">
+  <link rel="stylesheet" href="/assets/vendor/plyr/plyr.css">
+  <link rel="stylesheet" href="/assets/vendor/slim-select/slimselect.css">
+  <link rel="stylesheet" href="/assets/vendor/no-ui-slider/nouislider.min.css">
 
-    <!-- custom CSS -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
+
 <body>
 
-    <app-sidebar></app-sidebar>
+  <app-sidebar></app-sidebar>
 
-    <div class="container">
-      <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          Liste des Contenus
+  <div class="container">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        Liste des Propositions
 
-        </div>
-  
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Créateur</th>
-              <th>Date de soumission</th>
-              <th>Marque</th> 
-              <th>Statut</th>
-              <th>Téléchargé</th>
-              <th>Paiement</th>
-              <th>Feedback</th>
-              <th>Note</th>
-              <th>Description</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let contenu of contenus">
-              <td>{{ contenu.createur }}</td>
-              <td>{{ contenu.dateSoumission }}</td>
-              <td>{{ contenu.marque || 'Aucune' }}</td> 
-              <td>
-                <span class="badge" [ngClass]="{
-                  'badge-attente': contenu.statut === 'EN_ATTENTE',
-                  'badge-valide': contenu.statut === 'VALIDE',
-                  'badge-refuse': contenu.statut === 'REFUSE'
-                }">{{ contenu.statut }}</span>
-              </td>
-              <td>
-                <span class="badge" [ngClass]="contenu.estTelecharge ? 'badge-paye' : 'badge-non-paye'">
-                  {{ contenu.estTelecharge ? 'Oui' : 'Non' }}
-                </span>
-              </td>
-              <td>
-                <span class="badge" [ngClass]="contenu.statut === 'VALIDE' && contenu.estTelecharge ? 'badge-paye' : 'badge-non-paye'">
-                  {{ contenu.statut === 'VALIDE' && contenu.estTelecharge ? 'Payé' : 'Non Payé' }}
-                </span>
-              </td>
-              <td>{{ contenu.feedback?.commentaire || 'Aucun' }}</td>
-              <td>{{ contenu.feedback?.note || '-' }}</td>
-              <td>
-                <a *ngIf="contenu.fichier" [href]="contenu.fichier" download target="_blank" class="pdf-download" title="Télécharger la description PDF">
-                  <i class="fas fa-file-pdf"></i>
-                </a>
-              </td>
-              <td>
-                <button *ngIf="contenu.statut !== 'VALIDE'" class="btn btn-action btn-edit" (click)="modifierContenu(contenu)">
-                  <i class="fa-solid fa-pen"></i>
-                </button>
-                <button class="btn btn-action btn-delete" (click)="supprimerContenu(contenu.id)">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Créateur</th>
+            <th>Date</th>
+            <th>Marque</th>
+            <th>Pack demandé</th>
+            <th>Statut</th>
+            <th>Téléchargé</th>
+            <th>Paiement</th>
+            <th>Note créateur</th>
+            <th>Note contenu</th>
+            <th>Feedback</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contenu of contenus">
+            <td><span class="contenu-valeur">{{ contenu.createur }}</span></td>
+            <td><span class="contenu-valeur">{{ contenu.dateSoumission }}</span></td>
+            <td><span class="contenu-valeur">{{ contenu.marque || 'Aucune' }}</span></td>
+            <td><span class="contenu-valeur">{{ contenu.pack || 'Non spécifié' }}</span></td>
+            <td>
+              <span class="badge" [ngClass]="{
+          'badge-attente': contenu.statut === 'EN_ATTENTE',
+          'badge-valide': contenu.statut === 'VALIDE',
+          'badge-refuse': contenu.statut === 'REFUSE'
+        }">{{ contenu.statut }}</span>
+            </td>
+            <td>
+              <span class="badge" [ngClass]="contenu.estTelecharge ? 'badge-paye' : 'badge-non-paye'">
+                {{ contenu.estTelecharge ? 'Oui' : 'Non' }}
+              </span>
+            </td>
+            <td>
+              <span class="badge"
+                [ngClass]="contenu.statut === 'VALIDE' && contenu.estTelecharge ? 'badge-paye' : 'badge-non-paye'">
+                {{ contenu.statut === 'VALIDE' && contenu.estTelecharge ? 'Payé' : 'Non Payé' }}
+              </span>
+            </td>
+            <td><span class="contenu-valeur">{{ contenu.noteCreateur ?? '-' }}</span></td>
+            <td><span class="contenu-valeur">{{ contenu.feedback?.note ?? '-' }}</span></td>
+            <td><span class="contenu-valeur">{{ contenu.feedback?.commentaire || 'Aucun' }}</span></td>
+            <td>
+              <a *ngIf="contenu.lienDrive" [href]="contenu.lienDrive" target="_blank" class="pdf-download"
+                title="Voir la description Drive">
+                <i class="fas fa-link"></i>
+              </a>
+            </td>
+            <td>
+              <button *ngIf="contenu.statut !== 'VALIDE'" class="btn btn-action btn-edit"
+                (click)="modifierContenu(contenu)">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+              <button class="btn btn-action btn-delete" (click)="supprimerContenu(contenu.id)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
     </div>
-  
-    
-    
+  </div>
 
 
 
-    <!-- libraries JS -->
-    <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="/assets/vendor/splide/splide.min.js"></script>
-    <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
-    <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
-    <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
-    <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
-    <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
 
-    <!-- custom js -->
-    <script src="/assets/js/main.js"></script>
 
-    
+
+  <!-- libraries JS -->
+  <script src="/assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/splide/splide.min.js"></script>
+  <script src="/assets/vendor/splide/splide-extension-auto-scroll.min.js"></script>
+  <script src="/assets/vendor/slim-select/slimselect.min.js"></script>
+  <script src="/assets/vendor/plyr/plyr.polyfilled.js"></script>
+  <script src="/assets/vendor/no-ui-slider/nouislider.min.js"></script>
+  <script src="/assets/vendor/fs-lightbox/fslightbox.js"></script>
+
+  <!-- custom js -->
+  <script src="/assets/js/main.js"></script>
+
+
 </body>
 
 </html>
